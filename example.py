@@ -16,28 +16,20 @@ import time
 from utils import load_stops, load_stop_times
 
 
-# find all occurences of a stop id in stop_times-data
-def find_occ_numbers(stop_id, **kwargs):
-    if "stop_times" in kwargs:
-        stop_times = kwargs["stop_times"]
-    else:
-        stop_times = load_stop_times()
-    occ_ind = []
-    for ind, elem in enumerate(stop_times):
-        if elem[3] == stop_id:
-            occ_ind.append(ind)
-    return occ_ind
-
 # find all occurencies for all stop ids in stop_times-data
 def all_occ_numbers():
     stop_times = load_stop_times()
-    line_numbers = {}
-    stop_ids = [i[0] for i in load_stops()]
+    line_numbers = {k: [] for k in [i[0] for i in load_stops()]}
     c = time.perf_counter()
-    for elem in tqdm(stop_ids):
-        line_numbers[elem] = find_occ_numbers(elem, stop_times=stop_times)
+    new_list = []
+    for ind, elem in enumerate(stop_times):
+        new_list.append((elem[3], ind))
+    new_list = sorted(new_list, key=lambda x: x[0])
+    for elem in new_list:
+        line_numbers[elem[0]].append(elem[1])
     with open("lvb_auswertung/occ_numbers.json", "w+") as f:
         json.dump(line_numbers, f, indent=4)
+
 # load the data from the all_occ_numbers function
 def load_all_occ_numbers():
     with open("lvb_auswertung/occ_numbers.json") as f:
