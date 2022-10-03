@@ -42,42 +42,42 @@ def load_all_occ_numbers():
 # Findet zu allen Haltestellen (nach ID) alle Nachbarhaltestellen (mit direkter Verbindung ohne Stopp dazwischen) nach ID und die jeweils kürzeste Zeit, die für die Verbindung benötigt wird in Sekunden
 # Frage zur Diskussion: Sollten wir in die Zeiten auch die anschließenden Wartezeiten mit reinnehmen? -> meine Meinung: nein, wir müssen sowieso vereinfachen, dass man beliebig umsteigen kann, es geht nur um eine grobe Erfassung
 # Frage zur Diskussion: Sollte eine Minimalzeit gleich 0 erlaubt sein? -> kommt ab und zu vor (zum Beispiel zwischen Haltestellen 0000145 und 0013282 in trip 32098, aber in fast allen anderen Trips nicht) -> meine Meinung: nein, daher vor Ausführen der Minimum-Funktion Nullen entfernen und nur 0 zurückgeben, wenn immer 0 Zeit benötigt wird
+def time_sec(time):
+    time = time.replace('"', '')
+    return 3600*int(time[0:2])+60*int(time[3:5])+int(time[6:8])
+# Findet für einen Stop alle Nachbarhaltestellen anhand der Indizes aus der load_stop_times()-Funktion, in denen der Stopp vorkommt
+def find_neighbours(stop_times, occ_numbers):
+    neighbours = []
+    neighbour_times = []
+    for occ_number in occ_numbers:
+        point = stop_times[occ_number]
+        point_arr = time_sec(stop_times[occ_number][1])
+        point_dep = time_sec(stop_times[occ_number][2])
+        if occ_number != 0:
+            before = stop_times[occ_number-1]
+            diff = point_arr-time_sec(stop_times[occ_number-1][2])
+            if before[0] == point[0]:
+                neighbour_times.append((before[3], diff))
+                neighbours.append(before[3])
+        
+        if occ_number != len(stop_times)-1:
+            after = stop_times[occ_number+1]
+            diff = time_sec(stop_times[occ_number+1][1])-point_dep
+            if after[0] == point[0]:
+                neighbour_times.append((after[3], diff))
+                neighbours.append(after[3])
+    neighbours = list(set(neighbours))
+    def min_time(neighbour):
+        min_list = [elem[1] for elem in neighbour_times if elem[0] == neighbour]
+        min_list = [elem for elem in min_list if elem != 0]
+        if len(min_list) == 0:
+            return 0
+        return min(min_list)
+    return [(
+                neighbour, min_time(neighbour)
+            ) for neighbour in neighbours]
+
 def all_neighbours():
-    def time_sec(time):
-        time = time.replace('"', '')
-        return 3600*int(time[0:2])+60*int(time[3:5])+int(time[6:8])
-    # Findet für einen Stop alle Nachbarhaltestellen anhand der Indizes aus der load_stop_times()-Funktion, in denen der Stopp vorkommt
-    def find_neighbours(stop_times, occ_numbers):
-        neighbours = []
-        neighbour_times = []
-        for occ_number in occ_numbers:
-            point = stop_times[occ_number]
-            point_arr = time_sec(stop_times[occ_number][1])
-            point_dep = time_sec(stop_times[occ_number][2])
-            if occ_number != 0:
-                before = stop_times[occ_number-1]
-                diff = point_arr-time_sec(stop_times[occ_number-1][2])
-                if before[0] == point[0]:
-                    neighbour_times.append((before[3], diff))
-                    neighbours.append(before[3])
-            
-            if occ_number != len(stop_times)-1:
-                after = stop_times[occ_number+1]
-                diff = time_sec(stop_times[occ_number+1][1])-point_dep
-                if after[0] == point[0]:
-                    neighbour_times.append((after[3], diff))
-                    neighbours.append(after[3])
-        neighbours = list(set(neighbours))
-        def min_time(neighbour):
-            min_list = [elem[1] for elem in neighbour_times if elem[0] == neighbour]
-            min_list = [elem for elem in min_list if elem != 0]
-            if len(min_list) == 0:
-                return 0
-            return min(min_list)
-        return [(
-                    neighbour, min_time(neighbour)
-                ) for neighbour in neighbours]
-        #return list(set(neighbours))
     print("loading data...")
     stop_ids = [i[0] for i in load_stops()]
     stop_times = load_stop_times()
