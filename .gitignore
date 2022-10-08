@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+mehr_daten/all_zips
+mehr_daten/all_gtfs
+
 # Distribution / packaging
 .Python
 build/
