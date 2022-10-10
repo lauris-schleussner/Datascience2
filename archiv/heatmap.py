@@ -82,7 +82,7 @@ def plot_data():
     
 
 if __name__ == "__main__":
-    plot_data()
+    haltestellendichte_working()
     
 
 # Idee: Wir multiplizieren schließlich noch den 1/x-Wert für jede Station mit der Anzahl an Fahrten an der Station in 24 Stunden, um sie zu gewichten -> Wir erhalten: ich muss eine Strecke von x zurücklegen, um c Anschlüsse zu erhalten, repräsentiert durch den Quotienten c/x
