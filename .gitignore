@@ -164,6 +164,5 @@ cython_debug/
 
 # custom
 .DS_Store
-archiv.py
 /tests
 /archiv
