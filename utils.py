@@ -1,3 +1,4 @@
+import json
 # load all stops from stops.txt
 def load_stops():
     stops = []
@@ -22,3 +23,14 @@ def load_stop_times():
 def chunks(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
+
+
+def load_coordinates():
+    with open("lvb_auswertung/coordinates.json", "r") as f:
+        return json.load(f)
+
+def load_all_neighbours():
+    with open("lvb_auswertung/neighbours.json", "r") as f:
+        return json.load(f)
+
+
