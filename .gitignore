@@ -167,3 +167,4 @@ cython_debug/
 /tests
 /archiv
 
+/lvb_auswertung/neighbours_[2-9].json
