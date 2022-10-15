@@ -166,4 +166,7 @@ cython_debug/
 
 # custom
 .DS_Store
-archiv.py
+/tests
+/archiv
+
+/lvb_auswertung/neighbours_[2-9].json
