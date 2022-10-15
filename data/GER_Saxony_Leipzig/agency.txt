@@ -1,0 +1,26 @@
+﻿agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
+00147,"DB Regio AG Südost","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00421,"ABELLIO Rail Mitteldeutschland GmbH","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00440,"ABELLIO Rail Mitteldeutschland GmbH","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00010,"ABELLIO Rail Mitteldeutschland GmbH","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00683,"Auto-Webel","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00686,"PVG Burgenlandkreis","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00425,"Mitteldeutsche Regiobahn","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00443,"Mitteldeutsche Regiobahn","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00341,"Mitteldeutsche Regiobahn","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00149,"Döllnitzbahn","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00162,"Erfurter Bahn","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00164,"Erfurter Bahn Express","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00701,"Geißler Reisen","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00702,"Hallesche Verkehrs-AG","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00715,"Leipziger Verkehrsbetriebe","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00716,"Omnibusverkehr Leupold","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00729,"PNVG Merseburg-Querfurt","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00723,"NSB Naumburger Straßenbahn","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00724,"Omnibusbetrieb Saalekreis","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00725,"Omnibus-Verkehrsges. Heideland","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00731,"Regionalbus Leipzig GmbH","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00733,"Reiseverkehr Schulze","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+SD____,"SD____","https://www.insa.de","Europe/Berlin",,de
+00737,"THÜSAC","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
+00742,"Regionalverkehr Bitterfeld - Wolfen","https://www.mdv.de/ueber-uns/gesamtes-verbundgebiet/","Europe/Berlin","0341/91353591",de
