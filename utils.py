@@ -1,13 +1,13 @@
 import json
+import csv
 # load all stops from stops.txt
 def load_stops():
-    stops = []
-    with open("gtfsmdvlvb/stops.txt") as f:
-        txt_data = f.read()
-    for elem in txt_data.split("\n")[1:]:
-        stops.append(elem.split(","))
-    stops.remove([''])
-    return stops
+    with open('data/GER_Saxony_Leipzig/stops.txt', newline='', encoding = "utf-8") as f:
+        reader = csv.reader(f)
+        stops_file = list(reader)
+        stops_file.pop(0)
+        
+    return stops_file
 
 # load all stop times from stop_times
 def load_stop_times():
