@@ -33,4 +33,18 @@ def load_all_neighbours():
     with open("lvb_auswertung/neighbours.json", "r") as f:
         return json.load(f)
 
+def load_stops_as_dict():
 
+    stops = load_stops()
+    stop_number = len(stops)
+
+    # prepare dictionary so we can just look up coordinates
+    all_stops = {}
+    for i in range (stop_number + 1):
+        all_stops.setdefault(i, [])
+
+    for id, _ , lat, lon in stops:
+        all_stops[id] = [float(lat), float(lon)]
+
+
+    return all_stops
