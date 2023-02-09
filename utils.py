@@ -1,23 +1,35 @@
 import json
 import csv
+import pandas as pd
+from glob import glob
 # load all stops from stops.txt
-def load_stops():
-    with open('data/GER_Saxony_Leipzig/stops.txt', newline='', encoding = "utf-8") as f:
-        reader = csv.reader(f)
-        stops_file = list(reader)
-        stops_file.pop(0)
-        
-    return stops_file
+def load_stops(city = "GER_Saxony_Leipzig"):
+
+    # find the path, even if theres a 
+    try:
+        path = glob("data/" + city + "/**/stops.txt")[0]
+    except:
+        path = "data/" + city + "/stops.txt"
+    
+    
+    df = pd.read_csv(path, sep = ",", header = 0)
+    
+    if not(('stop_id' in df.columns) and ("stop_lat" in df.columns) and ("stop_lon" in df.columns)):
+        raise ValueError("GTFS data does not contain required rows")
+    
+    df = df[["stop_id", "stop_lat", "stop_lon"]]
+
+    return df
 
 # load all stop times from stop_times
-def load_stop_times():
-    stop_times = []
-    with open("gtfsmdvlvb/stop_times.txt") as f:
-        txt_data = f.read()
-    for elem in txt_data.split("\n")[1:]:
-        stop_times.append(elem.split(","))
-    stop_times.remove([''])
-    return stop_times
+def load_stop_times_df(city = "GER_Saxony_Leipzig"):
+
+    path = "data/" + city + "/stop_times.txt"
+
+    df = pd.read_csv(path, sep = ",", header = 0)
+    df = df[["trip_id","arrival_time","departure_time","stop_id"]]
+
+    return df
 
 
 def chunks(lst, n):
@@ -33,18 +45,22 @@ def load_all_neighbours():
     with open("lvb_auswertung/neighbours.json", "r") as f:
         return json.load(f)
 
-def load_stops_as_dict():
+def load_stops_as_dict(city):
 
-    stops = load_stops()
-    stop_number = len(stops)
+    df = load_stops(city)
 
-    # prepare dictionary so we can just look up coordinates
-    all_stops = {}
-    for i in range (stop_number + 1):
-        all_stops.setdefault(i, [])
-
-    for id, _ , lat, lon in stops:
-        all_stops[id] = [float(lat), float(lon)]
+    id = df["stop_id"].tolist()
+    lat = df["stop_lat"].tolist()
+    lon = df["stop_lon"].tolist()
 
 
-    return all_stops
+    d = {}
+    for i, la, lo in zip(id, lat, lon):
+        d[i] = [la, lo]
+
+    return d
+
+
+if __name__ == "__main__":
+    load_stop_times_df("US_Texas_Amarillo")
+
