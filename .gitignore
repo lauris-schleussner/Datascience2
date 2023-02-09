@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+linegraphs/
+plots/
+population_data/
+
 data/*
 !data/GER_Saxony_Leipzig
 # C extensions
