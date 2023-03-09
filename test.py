@@ -1,11 +1,29 @@
 import pandas as pd
+from tqdm import tqdm
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from scipy.interpolate import griddata
+from scipy.ndimage import gaussian_filter
+import utm
 
 
-data = [[1,"a", "x"],[1,"b", "y"],[1,"c", "z"],[2,"a", "z"],[2,"b", "z"],[3,"a", "z"]]
-df = pd.DataFrame(data, columns=["trip", "neighbour", "testneighbour"])
 
-df = df.groupby("trip").agg({"neighbour": lambda x: ' '.join(x), 'testneighbour': lambda x: ' '.join(x)})
 
-#grouped_df = df.groupby("trip_id").agg({'stop_lat': lambda x: ' '.join(x), 'stop_lon': lambda x: ' '.join(x)})
+BINS = 100
+BLUR = 0
 
-print(df.head())
+plt.rcParams['figure.dpi'] = 300
+
+df = pd.read_csv("population_data/1.csv", sep = ",", names = ["lat","lon","weight"], skiprows = 1)
+
+x = df["lat"].tolist()
+y = df["lon"].tolist()
+weight = df["weight"].tolist()
+
+data = np.histogram2d(x, y, weights = weight, bins=BINS)[0]
+data = gaussian_filter(data, sigma=BLUR)
+
+plt.pcolormesh(data.T, cmap='inferno', shading='gouraud')
+
+plt.savefig("population_us")
